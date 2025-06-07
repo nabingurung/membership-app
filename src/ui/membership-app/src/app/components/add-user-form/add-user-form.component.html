@@ -1,0 +1,196 @@
+<form (ngSubmit)="submitForm()" class="user-form compact-form">
+  <h3 class="form-title">{{ user ? 'Edit User' : 'Add User' }}</h3>
+  
+  <!-- Name Row -->
+  <div class="form-row row-group">
+    <div>
+      <label for="firstName">First Name</label>
+      <input id="firstName" [(ngModel)]="newUser.firstName" name="firstName" placeholder="First Name" required />
+    </div>
+    <div>
+      <label for="middleName">Middle Name</label>
+      <input id="middleName" [(ngModel)]="newUser.middleName" name="middleName" placeholder="Middle Name" />
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" [(ngModel)]="newUser.lastName" name="lastName" placeholder="Last Name" required />
+    </div>
+  </div>
+
+  <!-- Gender, Phone, Email Row -->
+  <div class="form-row row-group">
+    <div>
+      <label for="gender">Gender</label>
+      <select id="gender" [(ngModel)]="newUser.gender" name="gender" required>
+        <option value="" disabled>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <div>
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        id="phoneNumber"
+        type="tel"
+        [(ngModel)]="newUser.phoneNumber"
+        name="phoneNumber"
+        placeholder="Phone Number"
+        maxlength="14"
+        pattern="^\(\d{3}\) \d{3}-\d{4}$"
+        (input)="formatPhoneNumber()"
+        required
+      />
+    </div>
+    <div>
+      <label for="emailAddress">Email Address</label>
+      <input id="emailAddress" [(ngModel)]="newUser.emailAddress" name="emailAddress" type="email" placeholder="Email Address" required />
+    </div>
+  </div>
+
+  <!-- Address Row -->
+  <div class="form-row row-group">
+    <div>
+      <label for="streetAddress">Street Address</label>
+      <input id="streetAddress" [(ngModel)]="newUser.streetAddress" name="streetAddress" placeholder="Street Address" />
+    </div>
+    <div>
+      <label for="city">City</label>
+      <input id="city" [(ngModel)]="newUser.city" name="city" placeholder="City" />
+    </div>
+    <div>
+      <label for="state">State</label>
+      <select id="state" [(ngModel)]="newUser.state" name="state" required>
+        <option value="" disabled>Select State</option>
+        <option value="Alabama">Alabama</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Arizona">Arizona</option>
+        <option value="Arkansas">Arkansas</option>
+        <option value="California">California</option>
+        <option value="Colorado">Colorado</option>
+        <option value="Connecticut">Connecticut</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Florida">Florida</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Hawaii">Hawaii</option>
+        <option value="Idaho">Idaho</option>
+        <option value="Illinois">Illinois</option>
+        <option value="Indiana">Indiana</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Kentucky">Kentucky</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Maine">Maine</option>
+        <option value="Maryland" selected>Maryland</option>
+        <option value="Massachusetts">Massachusetts</option>
+        <option value="Michigan">Michigan</option>
+        <option value="Minnesota">Minnesota</option>
+        <option value="Mississippi">Mississippi</option>
+        <option value="Missouri">Missouri</option>
+        <option value="Montana">Montana</option>
+        <option value="Nebraska">Nebraska</option>
+        <option value="Nevada">Nevada</option>
+        <option value="New Hampshire">New Hampshire</option>
+        <option value="New Jersey">New Jersey</option>
+        <option value="New Mexico">New Mexico</option>
+        <option value="New York">New York</option>
+        <option value="North Carolina">North Carolina</option>
+        <option value="North Dakota">North Dakota</option>
+        <option value="Ohio">Ohio</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="Rhode Island">Rhode Island</option>
+        <option value="South Carolina">South Carolina</option>
+        <option value="South Dakota">South Dakota</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Texas">Texas</option>
+        <option value="Utah">Utah</option>
+        <option value="Vermont">Vermont</option>
+        <option value="Virginia">Virginia</option>
+        <option value="Washington">Washington</option>
+        <option value="West Virginia">West Virginia</option>
+        <option value="Wisconsin">Wisconsin</option>
+        <option value="Wyoming">Wyoming</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Member Type Row -->
+  <div class="form-row row-group">
+    <div>
+      <label for="memberType">Member Type</label>
+      <select id="memberType" [(ngModel)]="newUser.memberType" name="memberType"
+       required (ngModelChange)="onMemberTypeChange($event)">
+        <option value="" disabled selected>Select Member Type</option>
+        <option value="general">General</option>
+        <option value="life">Life</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Renewed Row -->
+  <div class="form-row row-group">
+    <div>
+      <label class="renewed-label">
+        <input
+          type="checkbox"
+          class="renewed-checkbox"
+          [(ngModel)]="newUser.renewed"
+          name="renewed"
+          [disabled]="newUser.memberType === 'life'"
+        />
+        Renewed
+      </label>
+      <span *ngIf="newUser.memberType === 'life'" style="margin-left: 0.5rem; color: #888;">
+        (Life members are always renewed)
+      </span>
+    </div>
+  </div>
+
+  <!-- Spouse Section -->
+  <fieldset>
+    <legend>Spouse</legend>
+    <div class="form-row row-group">
+      <div>
+        <label for="spouseFirstName">First Name</label>
+        <input id="spouseFirstName" [(ngModel)]="newUser.spouse!.firstName" name="spouseFirstName" placeholder="Spouse First Name" />
+      </div>
+      <div>
+        <label for="spouseMiddleName">Middle Name</label>
+        <input id="spouseMiddleName" [(ngModel)]="newUser.spouse!.middleName" name="spouseMiddleName" placeholder="Spouse Middle Name" />
+      </div>
+      <div>
+        <label for="spouseLastName">Last Name</label>
+        <input id="spouseLastName" [(ngModel)]="newUser.spouse!.lastName" name="spouseLastName" placeholder="Spouse Last Name" />
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Kids Section -->
+  <fieldset>
+    <legend>Kids</legend>
+    <div *ngFor="let kid of newUser.kids; let i = index" class="form-row row-group">
+      <div>
+        <label [for]="'kidFirstName' + i">First Name</label>
+        <input [id]="'kidFirstName' + i" [(ngModel)]="kid.firstName" [name]="'kidFirstName' + i" placeholder="Kid First Name" />
+      </div>
+      <div>
+        <label [for]="'kidMiddleName' + i">Middle Name</label>
+        <input [id]="'kidMiddleName' + i" [(ngModel)]="kid.middleName" [name]="'kidMiddleName' + i" placeholder="Kid Middle Name" />
+      </div>
+      <div>
+        <label [for]="'kidLastName' + i">Last Name</label>
+        <input [id]="'kidLastName' + i" [(ngModel)]="kid.lastName" [name]="'kidLastName' + i" placeholder="Kid Last Name" />
+      </div>
+      <div style="display: flex; align-items: flex-end;">
+        <button type="button" (click)="removeKid(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addKid()">Add Kid</button>
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit">{{ user ? 'Save Changes' : 'Add User' }}</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </div>
+</form>

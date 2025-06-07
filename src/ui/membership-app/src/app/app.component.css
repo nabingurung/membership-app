@@ -1,0 +1,98 @@
+.footer-license {
+    width: 100%;
+    text-align: center;
+    color: var(--gray-700);
+    font-size: 0.95rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .login-form {
+    background: #fff;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    min-width: 320px;
+    max-width: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+
+  .login-form h2 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--gray-900);
+    font-weight: 600;
+  }
+
+  .login-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+
+  .login-form input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background: #f8f9fa;
+  }
+
+  .login-form .error-message {
+    color: #d32f2f;
+    background: #fff0f0;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .login-form button[type="submit"] {
+    width: 100%;
+    background: var(--bright-blue, #007bff);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 0;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .login-form button[type="submit"]:hover {
+    background: #0056b3;
+  }
+
+  .logout-btn {
+    background: var(--bright-blue, #007bff);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-left: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  .logout-btn:hover {
+    background: #0056b3;
+  }

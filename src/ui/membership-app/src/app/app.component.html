@@ -1,0 +1,45 @@
+<!--
+  @license
+  Copyright (c) Nabin Gurung
+  Date and Time: 2025-06-06T14:23:00
+-->
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+        <img src="assets/logo.jpg" alt="BTS Logo" class="angular-logo" style="height: 60px;" />
+        <h1>{{ title }}</h1>
+      </div>
+    </div>
+    <div class="right-side" style="display: flex; flex-direction: column; align-items: flex-end;">
+      <div *ngIf="isLoggedIn" style="margin-bottom: 1rem;">
+        <span>Welcome, admin!</span>
+        <button (click)="logout()" class="logout-btn">Logout</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Login Form -->
+<div *ngIf="!isLoggedIn" class="login-container">
+  <form (ngSubmit)="login()" class="login-form">
+    <h2>Login</h2>
+    <div>
+      <label for="username">Username</label>
+      <input id="username" name="username" [(ngModel)]="username" required />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" [(ngModel)]="password" required />
+    </div>
+    <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<!-- Show user list only if logged in -->
+<app-user-list *ngIf="isLoggedIn"></app-user-list>
+
+<footer class="footer-license">
+  &copy; Nabin Gurung &mdash; {{currentDateTime}}
+</footer>

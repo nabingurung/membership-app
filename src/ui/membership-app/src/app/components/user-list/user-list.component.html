@@ -1,0 +1,130 @@
+<button (click)="showAddForm = true" *ngIf="!showAddForm" class="add-btn">Add User</button>
+<button (click)="exportToCSV()" *ngIf="!showAddForm" class="add-btn" style="margin-left: 1rem;">Export CSV</button>
+
+<app-add-user-form
+  *ngIf="showAddForm"
+  [user]="editUser"
+  (userSaved)="onUserSaved($event)"
+  (cancel)="onCancelEdit()">
+</app-add-user-form>
+
+<div *ngIf="!showAddForm">
+  <!-- Filter input -->
+  <input
+    type="text"
+    placeholder="Search by name, email, or city"
+    [(ngModel)]="filterText"
+    (input)="applyFilter()"
+    style="margin-bottom: 1rem; padding: 0.5rem; width: 300px;"
+  />
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th (click)="sortBy('firstName')">
+          First Name
+          <span *ngIf="sortColumn === 'firstName'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('middleName')">
+          Middle Name
+          <span *ngIf="sortColumn === 'middleName'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('lastName')">
+          Last Name
+          <span *ngIf="sortColumn === 'lastName'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th>Gender</th>
+        <th (click)="sortBy('phoneNumber')">
+          Phone
+          <span *ngIf="sortColumn === 'phoneNumber'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('emailAddress')">
+          Email
+          <span *ngIf="sortColumn === 'emailAddress'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('city')">
+          City
+          <span *ngIf="sortColumn === 'city'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('state')">
+          State
+          <span *ngIf="sortColumn === 'state'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('memberType')">
+          Member Type
+          <span *ngIf="sortColumn === 'memberType'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th>Renewed</th>
+        <th>Spouse</th>
+        <th>Kids</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of pagedUsers(); let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.middleName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.emailAddress }}</td> <!-- Added -->
+        <td>{{ user.city }}</td>
+        <td>{{ user.state }}</td>
+        <td>{{ user.memberType | titlecase }}</td> <!-- Added -->
+       <td>
+  <span
+    class="renewed-badge"
+    [ngClass]="user.renewed ? 'renewed' : 'not-renewed'"
+  >
+    {{ user.renewed ? 'Renewed' : 'Not Renewed' }}
+  </span>
+</td>
+        <td>
+          <span *ngIf="user.spouse">
+            {{ user.spouse.firstName }} {{ user.spouse.middleName }} {{ user.spouse.lastName }}
+          </span>
+          <span *ngIf="!user.spouse">—</span>
+        </td>
+        <td>
+          <span *ngIf="user.kids && user.kids.length > 0">
+            <ng-container *ngFor="let kid of user.kids; let last = last">
+              {{ kid.firstName }} {{ kid.middleName }} {{ kid.lastName }}<span *ngIf="!last">, </span>
+            </ng-container>
+          </span>
+          <span *ngIf="!user.kids || user.kids.length === 0">—</span>
+        </td>
+        <td>
+          <button (click)="onEditUser(user)" class="edit-btn">Edit</button>
+          <button (click)="deleteUser(user.id!)" class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="pagedUsers().length === 0">
+        <td colspan="13" style="text-align:center;">No users found.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">&laquo; Prev</button>
+    <span>Page {{currentPage}} of {{totalPages()}}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next &raquo;</button>
+  </div>
+</div>

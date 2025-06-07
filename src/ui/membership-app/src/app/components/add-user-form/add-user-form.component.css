@@ -1,0 +1,119 @@
+.user-form {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.full-page-form {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-radius: 8px;
+}
+.compact-form {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem 2rem 1rem 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form-title {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.form-row.row-group {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+.form-row.row-group > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form-row label {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.user-form input,
+.user-form select {
+  padding: 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+fieldset {
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  background: #fff;
+}
+legend {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.kid-row {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #ccc;
+}
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2rem;
+}
+button[type="submit"] {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button[type="button"] {
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Make the Renewed checkbox bigger and styled */
+.renewed-checkbox {
+  transform: scale(1.5);
+  accent-color: #28a745; /* Green for checked */
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.renewed-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

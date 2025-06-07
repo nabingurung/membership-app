@@ -1,0 +1,83 @@
+.renewed-badge {
+  display: inline-block;
+  padding: 0.25em 0.9em;
+  border-radius: 999px;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.renewed-badge.renewed {
+  background: #28a745;
+}
+.renewed-badge.not-renewed {
+  background: #dc3545;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.user-table th, .user-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.user-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+.user-table tr:last-child td {
+  border-bottom: none;
+}
+.add-btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.delete-btn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.edit-btn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.pagination button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pagination button[disabled] {
+  background: #ccc;
+  cursor: not-allowed;
+}
