@@ -1,0 +1,26 @@
+services:
+  api:
+    container_name: membership-api
+    build:
+      context: ./src/api/Api.Membership
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MembershipDb;User=sa;Password=Nabin@123;TrustServerCertificate=True;
+    depends_on:
+      - db
+
+  db:
+    container_name: membership-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Nabin@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+volumes:
+  mssql-data:
