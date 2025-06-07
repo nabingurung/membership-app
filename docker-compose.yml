@@ -10,6 +10,7 @@ services:
       - ConnectionStrings__DefaultConnection=Server=db;Database=MembershipDb;User=sa;Password=Nabin@123;TrustServerCertificate=True;
     depends_on:
       - db
+    restart: always
 
   db:
     container_name: membership-db
@@ -21,6 +22,7 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
+    restart: always
 
 volumes:
   mssql-data:
