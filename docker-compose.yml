@@ -24,5 +24,15 @@ services:
       - mssql-data:/var/opt/mssql
     restart: always
 
+  ui:
+    container_name: membership-ui
+    build:
+      context: ./src/ui/membership-app
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+    restart: always
+
 volumes:
   mssql-data:
